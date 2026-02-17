@@ -7,32 +7,29 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
 
-        String input = "radar";
+        String input = "radar"; // You can change this to test other words
 
         System.out.println("=====================================");
-        System.out.println("Palindrome Checker - UC4");
+        System.out.println("Stack-Based Palindrome Checker - UC5");
         System.out.println("=====================================");
         System.out.println("Input String: " + input);
 
-        // Convert string to character array
-        char[] characters = input.toCharArray();
+        // Stack-based approach
+        java.util.Stack<Character> stack = new java.util.Stack<>();
 
-        // Two-pointer approach
-        int start = 0;
-        int end = characters.length - 1;
-
-        boolean isPalindrome = true;
-
-        while (start < end) {
-
-            if (characters[start] != characters[end]) {
-                isPalindrome = false;
-                break;
-            }
-
-            start++;
-            end--;
+        // Push characters into the stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
         }
+
+        // Pop characters from the stack to form reversed string
+        String reversed = "";
+        while (!stack.isEmpty()) {
+            reversed += stack.pop();
+        }
+
+        // Check if original string equals reversed string
+        boolean isPalindrome = input.equals(reversed);
 
         // Display result
         if (isPalindrome) {
@@ -42,7 +39,7 @@ public class PalindromeCheckerApp {
         }
 
         System.out.println("=====================================");
-        System.out.println("Program Ended.");;
+        System.out.println("Program Ended.");
     }
 }
 
