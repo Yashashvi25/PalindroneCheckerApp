@@ -7,26 +7,28 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
 
-        // Hardcoded string (String Literal)
-        String word = "madam";
+        // Original string
+        String original = "level";
 
         System.out.println("=====================================");
-        System.out.println("Palindrome Checker - UC2");
+        System.out.println("Palindrome Checker - UC3");
         System.out.println("=====================================");
-        System.out.println("Given Word: " + word);
+        System.out.println("Original String: " + original);
 
-        // Reverse the string
-        String reversedWord = "";
+        // Reverse the string using for loop
+        String reversed = "";
 
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversedWord = reversedWord + word.charAt(i);
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);   // String concatenation
         }
 
-        // Conditional Statement (if-else)
-        if (word.equals(reversedWord)) {
-            System.out.println("Result: The given word is a PALINDROME.");
+        System.out.println("Reversed String: " + reversed);
+
+        // Compare original and reversed using equals()
+        if (original.equals(reversed)) {
+            System.out.println("Result: It is a PALINDROME.");
         } else {
-            System.out.println("Result: The given word is NOT a palindrome.");
+            System.out.println("Result: It is NOT a palindrome.");
         }
 
         System.out.println("=====================================");
