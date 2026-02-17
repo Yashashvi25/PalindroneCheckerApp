@@ -6,14 +6,31 @@ public class PalindromeCheckerApp {
     // Main method - Entry point of the application
     public static void main(String[] args) {
 
-        // Display welcome message
-        System.out.println("=====================================");
-        System.out.println("Welcome to " + APP_NAME);
-        System.out.println(APP_VERSION);
-        System.out.println("=====================================");
 
-        // Application startup flow
-        System.out.println("Application started successfully.");
-        System.out.println("Ready for palindrome validation...");
+        // Hardcoded string (String Literal)
+        String word = "madam";
+
+        System.out.println("=====================================");
+        System.out.println("Palindrome Checker - UC2");
+        System.out.println("=====================================");
+        System.out.println("Given Word: " + word);
+
+        // Reverse the string
+        String reversedWord = "";
+
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversedWord = reversedWord + word.charAt(i);
+        }
+
+        // Conditional Statement (if-else)
+        if (word.equals(reversedWord)) {
+            System.out.println("Result: The given word is a PALINDROME.");
+        } else {
+            System.out.println("Result: The given word is NOT a palindrome.");
+        }
+
+        System.out.println("=====================================");
+        System.out.println("Program Ended.");
     }
 }
+
