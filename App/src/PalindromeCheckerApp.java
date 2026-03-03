@@ -6,34 +6,21 @@ public class PalindromeCheckerApp {
     // Main method - Entry point of the application
     public static void main(String[] args) {
 
-        String input = "A man a plan a canal Panama"; // Change to test
+        String input = "radar"; // Change input to test other words
 
         System.out.println("=====================================");
         System.out.println(APP_NAME + " - " + APP_VERSION);
-        System.out.println("Case-Insensitive & Space-Ignored Palindrome - UC10");
+        System.out.println("Object-Oriented Palindrome Service - UC11");
         System.out.println("=====================================");
-        System.out.println("Original Input: " + input);
+        System.out.println("Input String: " + input);
 
-        // Step 1: Normalize string
-        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        // Create service object (Encapsulation)
+        PalindromeChecker palindromeChecker = new PalindromeChecker();
 
-        System.out.println("Normalized Input: " + normalized);
+        // Call method
+        boolean isPalindrome = palindromeChecker.checkPalindrome(input);
 
-        // Step 2: Apply palindrome logic (two-pointer)
-        boolean isPalindrome = true;
-        int start = 0;
-        int end = normalized.length() - 1;
-
-        while (start < end) {
-            if (normalized.charAt(start) != normalized.charAt(end)) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
-        }
-
-        // Step 3: Display result
+        // Display result
         if (isPalindrome) {
             System.out.println("Result: It is a PALINDROME.");
         } else {
