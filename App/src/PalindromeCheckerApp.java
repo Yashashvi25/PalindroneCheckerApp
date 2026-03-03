@@ -6,32 +6,43 @@ public class PalindromeCheckerApp {
     // Main method - Entry point of the application
     public static void main(String[] args) {
 
-
-        String input = "radar"; // You can change this to test other words
+        String input = "radar"; // Change this to test other words
 
         System.out.println("=====================================");
-        System.out.println("Stack-Based Palindrome Checker - UC5");
+        System.out.println(APP_NAME + " - " + APP_VERSION);
+        System.out.println("Queue + Stack Based Palindrome Check");
         System.out.println("=====================================");
         System.out.println("Input String: " + input);
 
-        // Stack-based approach
+        input = input.toLowerCase();
+
+        // Create Queue (FIFO)
+        java.util.Queue<Character> queue = new java.util.LinkedList<>();
+
+        // Create Stack (LIFO)
         java.util.Stack<Character> stack = new java.util.Stack<>();
 
-        // Push characters into the stack
+        // Enqueue and Push characters
         for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+            char ch = input.charAt(i);
+            queue.add(ch);   // Enqueue (FIFO)
+            stack.push(ch);  // Push (LIFO)
         }
 
-        // Pop characters from the stack to form reversed string
-        String reversed = "";
-        while (!stack.isEmpty()) {
-            reversed += stack.pop();
+        // Compare Dequeue vs Pop
+        boolean isPalindrome = true;
+
+        while (!queue.isEmpty()) {
+            char fromQueue = queue.remove();  // Dequeue
+            char fromStack = stack.pop();     // Pop
+
+            if (fromQueue != fromStack) {
+                isPalindrome = false;
+                break;
+            }
         }
 
-        // Check if original string equals reversed string
-        boolean isPalindrome = input.equals(reversed);
-
-        // Display result
+        // Display Result
         if (isPalindrome) {
             System.out.println("Result: It is a PALINDROME.");
         } else {
@@ -41,5 +52,3 @@ public class PalindromeCheckerApp {
         System.out.println("=====================================");
         System.out.println("Program Ended.");
     }
-}
-
