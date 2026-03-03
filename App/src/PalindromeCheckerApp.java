@@ -6,35 +6,49 @@ public class PalindromeCheckerApp {
     // Main method - Entry point of the application
     public static void main(String[] args) {
 
-        String input = "radar"; // Change to test
-        String selectedStrategy = "stack"; // Change to "deque" to test another strategy
+        String input = "A man a plan a canal Panama";
+        input = input.replaceAll("\\s+", "").toLowerCase();
 
         System.out.println("=====================================");
         System.out.println(APP_NAME + " - " + APP_VERSION);
-        System.out.println("Strategy Pattern - Palindrome Checker (UC12)");
+        System.out.println("Performance Comparison - UC13");
         System.out.println("=====================================");
         System.out.println("Input String: " + input);
-        System.out.println("Selected Strategy: " + selectedStrategy);
+        System.out.println();
 
-        // Strategy reference (Polymorphism)
-        PalindromeStrategy strategy;
+        // -------- Stack Strategy --------
+        PalindromeStrategy stackStrategy = new StackStrategy();
+        long startStack = System.nanoTime();
+        boolean stackResult = stackStrategy.checkPalindrome(input);
+        long endStack = System.nanoTime();
+        long stackTime = endStack - startStack;
 
-        // Inject strategy at runtime
-        if (selectedStrategy.equalsIgnoreCase("stack")) {
-            strategy = new StackStrategy();
-        } else {
-            strategy = new DequeStrategy();
-        }
+        // -------- Deque Strategy --------
+        PalindromeStrategy dequeStrategy = new DequeStrategy();
+        long startDeque = System.nanoTime();
+        boolean dequeResult = dequeStrategy.checkPalindrome(input);
+        long endDeque = System.nanoTime();
+        long dequeTime = endDeque - startDeque;
 
-        // Execute selected algorithm
-        boolean isPalindrome = strategy.checkPalindrome(input);
+        // -------- Recursive Strategy --------
+        PalindromeStrategy recursiveStrategy = new RecursiveStrategy();
+        long startRec = System.nanoTime();
+        boolean recResult = recursiveStrategy.checkPalindrome(input);
+        long endRec = System.nanoTime();
+        long recTime = endRec - startRec;
 
-        // Display result
-        if (isPalindrome) {
-            System.out.println("Result: It is a PALINDROME.");
-        } else {
-            System.out.println("Result: It is NOT a palindrome.");
-        }
+        // -------- Display Results --------
+        System.out.println("Stack Strategy Result: " + stackResult);
+        System.out.println("Execution Time (ns): " + stackTime);
+        System.out.println();
+
+        System.out.println("Deque Strategy Result: " + dequeResult);
+        System.out.println("Execution Time (ns): " + dequeTime);
+        System.out.println();
+
+        System.out.println("Recursive Strategy Result: " + recResult);
+        System.out.println("Execution Time (ns): " + recTime);
+        System.out.println();
 
         System.out.println("=====================================");
         System.out.println("Program Ended.");
