@@ -6,19 +6,28 @@ public class PalindromeCheckerApp {
     // Main method - Entry point of the application
     public static void main(String[] args) {
 
-        String input = "radar"; // Change input to test other words
+        String input = "radar"; // Change to test
+        String selectedStrategy = "stack"; // Change to "deque" to test another strategy
 
         System.out.println("=====================================");
         System.out.println(APP_NAME + " - " + APP_VERSION);
-        System.out.println("Object-Oriented Palindrome Service - UC11");
+        System.out.println("Strategy Pattern - Palindrome Checker (UC12)");
         System.out.println("=====================================");
         System.out.println("Input String: " + input);
+        System.out.println("Selected Strategy: " + selectedStrategy);
 
-        // Create service object (Encapsulation)
-        PalindromeChecker palindromeChecker = new PalindromeChecker();
+        // Strategy reference (Polymorphism)
+        PalindromeStrategy strategy;
 
-        // Call method
-        boolean isPalindrome = palindromeChecker.checkPalindrome(input);
+        // Inject strategy at runtime
+        if (selectedStrategy.equalsIgnoreCase("stack")) {
+            strategy = new StackStrategy();
+        } else {
+            strategy = new DequeStrategy();
+        }
+
+        // Execute selected algorithm
+        boolean isPalindrome = strategy.checkPalindrome(input);
 
         // Display result
         if (isPalindrome) {
