@@ -6,18 +6,34 @@ public class PalindromeCheckerApp {
     // Main method - Entry point of the application
     public static void main(String[] args) {
 
-        String input = "radar"; // Change input to test other words
+        String input = "A man a plan a canal Panama"; // Change to test
 
         System.out.println("=====================================");
         System.out.println(APP_NAME + " - " + APP_VERSION);
-        System.out.println("Recursive Palindrome Checker - UC9");
+        System.out.println("Case-Insensitive & Space-Ignored Palindrome - UC10");
         System.out.println("=====================================");
-        System.out.println("Input String: " + input);
+        System.out.println("Original Input: " + input);
 
-        input = input.toLowerCase();
+        // Step 1: Normalize string
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
 
-        boolean isPalindrome = checkPalindrome(input, 0, input.length() - 1);
+        System.out.println("Normalized Input: " + normalized);
 
+        // Step 2: Apply palindrome logic (two-pointer)
+        boolean isPalindrome = true;
+        int start = 0;
+        int end = normalized.length() - 1;
+
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        // Step 3: Display result
         if (isPalindrome) {
             System.out.println("Result: It is a PALINDROME.");
         } else {
@@ -26,21 +42,4 @@ public class PalindromeCheckerApp {
 
         System.out.println("=====================================");
         System.out.println("Program Ended.");
-    }
-
-    // Recursive method
-    private static boolean checkPalindrome(String str, int start, int end) {
-
-        // Base condition
-        if (start >= end) {
-            return true;
-        }
-
-        // If characters don't match
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return checkPalindrome(str, start + 1, end - 1);
     }
